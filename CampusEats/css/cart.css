@@ -1,0 +1,165 @@
+/* CampusEats - Cart & Checkout Styles (Navy + Gold Theme) */
+
+.cart-layout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 24px;
+}
+
+.cart-items-card {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  padding: 24px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cart-table-header {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 40px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--secondary-text);
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-color);
+  text-transform: uppercase;
+}
+
+.cart-item-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 40px;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.cart-item-row:last-child {
+  border-bottom: none;
+}
+
+.cart-item-details {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cart-item-img {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+}
+
+.cart-item-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--primary-navy);
+}
+
+.cart-item-price {
+  font-size: 13px;
+  color: var(--secondary-text);
+}
+
+.cart-item-total {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--primary-navy);
+}
+
+.remove-item-btn {
+  color: var(--light-text);
+  transition: color 0.2s ease;
+}
+
+.remove-item-btn:hover {
+  color: var(--danger-red);
+}
+
+.order-summary-card {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  padding: 24px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.summary-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--primary-navy);
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: var(--secondary-text);
+}
+
+.summary-row.total {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--primary-navy);
+  padding-top: 12px;
+  border-top: 1px solid var(--border-color);
+}
+
+.promo-box {
+  display: flex;
+  gap: 8px;
+}
+
+.promo-input {
+  flex: 1;
+  height: 40px;
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 0 12px;
+  font-size: 13px;
+  outline: none;
+}
+
+.apply-promo-btn {
+  background: var(--primary-navy);
+  color: var(--gold-primary);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 0 16px;
+  border-radius: var(--radius-md);
+  transition: background 0.2s ease;
+}
+
+.apply-promo-btn:hover {
+  background: var(--secondary-navy);
+}
+
+.checkout-btn {
+  background: var(--gold-primary);
+  color: var(--primary-navy);
+  font-size: 16px;
+  font-weight: 800;
+  height: 48px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-gold);
+  transition: background 0.2s ease;
+}
+
+.checkout-btn:hover {
+  background: var(--gold-accent);
+}
+
+@media (max-width: 900px) {
+  .cart-layout {
+    grid-template-columns: 1fr;
+  }
+}

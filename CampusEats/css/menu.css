@@ -1,0 +1,72 @@
+/* CampusEats - Menu & Filter Styles (Navy + Gold Theme) */
+
+.menu-header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.menu-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--primary-navy);
+}
+
+.filter-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.filter-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary-navy);
+  transition: all 0.2s ease;
+}
+
+.filter-btn:hover, .filter-btn.active {
+  border-color: var(--gold-primary);
+  background: var(--soft-gold);
+  color: var(--primary-navy);
+}
+
+.sort-select {
+  height: 38px;
+  padding: 0 12px;
+  background: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  color: var(--primary-navy);
+  outline: none;
+}
+
+.full-menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.veg-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #16A34A;
+  background: #DCFCE7;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-bottom: 4px;
+}
