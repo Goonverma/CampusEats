@@ -8,7 +8,7 @@ function renderOrdersHistory() {
   const container = document.getElementById('ordersListContainer');
   if (!container) return;
 
-  const userOrders = JSON.parse(localStorage.getItem('campusEats_orders') || '[]');
+  const userOrders = getUserOrders();
 
   if (userOrders.length === 0) {
     container.innerHTML = `
@@ -41,7 +41,7 @@ function renderOrdersHistory() {
             <div style="font-size: 12px; color: #6B7280; margin-top: 2px;">Total Paid: <strong style="color: #111827;">₹${order.total}</strong></div>
           </div>
           <div>
-            ${order.status === 'Preparing' ? `
+            ${order.status === 'Preparing' || order.status === 'Confirmed' || order.status === 'Placed' ? `
               <a href="tracking.html" class="add-cart-btn" style="display: inline-block;">Track Order →</a>
             ` : `
               <button class="add-cart-btn" onclick="showToast('Re-ordering items...')">Reorder</button>

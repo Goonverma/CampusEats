@@ -131,7 +131,7 @@
             <div class="notif-item">
               <div class="notif-icon">🍳</div>
               <div class="notif-content">
-                <div class="notif-title">Order #CE1024 is preparing!</div>
+                <div class="notif-title">Welcome to CampusEats!</div>
                 <div class="notif-time">2 mins ago</div>
               </div>
             </div>
@@ -154,9 +154,9 @@
           <div class="v-divider"></div>
 
           <a href="profile.html" class="user-profile-btn">
-            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="Goon Verma" class="user-avatar">
+            <div class="user-avatar">GV</div>
             <div class="user-info">
-              <span class="user-name">Goon Verma</span>
+              <span class="user-name">User</span>
               <span class="user-role">Student</span>
             </div>
             <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -178,7 +178,7 @@
               <div class="hero-card">
                 <div class="hero-left">
                   <div class="hero-greeting">Good Afternoon,</div>
-                  <div class="hero-name">Goon! <span class="wave-emoji">👋</span></div>
+                  <div class="hero-name">Student! <span class="wave-emoji">👋</span></div>
                   <div class="hero-subtitle">What are you craving today?</div>
                   <a href="menu.html" class="hero-btn">Explore Menu →</a>
                 </div>
@@ -225,9 +225,8 @@
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
                 </div>
                 <div class="kpi-details">
-                  <div class="kpi-number">24</div>
+                  <div class="kpi-number">0</div>
                   <div class="kpi-label">Total Orders</div>
-                  <div class="kpi-trend">↑ 12%</div>
                 </div>
               </div>
 
@@ -237,9 +236,8 @@
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
                 </div>
                 <div class="kpi-details">
-                  <div class="kpi-number">8</div>
+                  <div class="kpi-number">0</div>
                   <div class="kpi-label">Wishlist Items</div>
-                  <div class="kpi-trend">↑ 5%</div>
                 </div>
               </div>
 
@@ -249,9 +247,8 @@
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
                 </div>
                 <div class="kpi-details">
-                  <div class="kpi-number">₹420</div>
+                  <div class="kpi-number">₹0</div>
                   <div class="kpi-label">Total Saved</div>
-                  <div class="kpi-trend">↑ 18%</div>
                 </div>
               </div>
 
@@ -261,9 +258,8 @@
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
                 </div>
                 <div class="kpi-details">
-                  <div class="kpi-number">5</div>
+                  <div class="kpi-number">0</div>
                   <div class="kpi-label">Favourite Items</div>
-                  <div class="kpi-trend">↑ 10%</div>
                 </div>
               </div>
             </div>
@@ -457,96 +453,24 @@
             <div class="current-order-card">
               <div class="order-card-header">
                 <div class="order-card-title">Your Current Order</div>
-                <span class="status-badge-prep">Preparing</span>
               </div>
-
-              <div class="order-meta-info">
-                <span class="order-id-code">Order #CE1024</span>
-                <span class="order-est-time">⏱ 15–20 mins</span>
+              <div style="text-align: center; padding: 28px 12px; color: var(--secondary-text);">
+                <div style="font-size: 32px; margin-bottom: 8px;">🛍️</div>
+                <h4 style="font-size: 15px; font-weight: 700; color: var(--primary-navy); margin-bottom: 4px;">No active order</h4>
+                <p style="font-size: 12px; margin-bottom: 14px; color: var(--secondary-text);">Place an order to track it here.</p>
+                <a href="menu.html" class="hero-btn" style="display: inline-block; padding: 8px 16px; font-size: 12px;">Browse Menu →</a>
               </div>
-
-              <!-- 5-Stage Order Tracker -->
-              <div class="progress-tracker">
-                <div class="tracker-line"></div>
-                <div class="tracker-line-fill"></div>
-
-                <!-- Stage 1: Placed -->
-                <div class="step-node completed">
-                  <div class="node-icon">✓</div>
-                  <span class="node-label">Placed</span>
-                </div>
-                <!-- Stage 2: Confirmed -->
-                <div class="step-node completed">
-                  <div class="node-icon">✓</div>
-                  <span class="node-label">Confirmed</span>
-                </div>
-                <!-- Stage 3: Preparing (Active) -->
-                <div class="step-node active">
-                  <div class="node-icon">●</div>
-                  <span class="node-label">Preparing</span>
-                </div>
-                <!-- Stage 4: Ready -->
-                <div class="step-node">
-                  <div class="node-icon">○</div>
-                  <span class="node-label">Ready</span>
-                </div>
-                <!-- Stage 5: Delivered -->
-                <div class="step-node">
-                  <div class="node-icon">○</div>
-                  <span class="node-label">Delivered</span>
-                </div>
-              </div>
-
-              <!-- Food Item Row -->
-              <div class="order-item-box">
-                <img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=150&q=80" alt="Paneer Wrap" class="item-thumb">
-                <div class="item-name-qty">Paneer Wrap × 2</div>
-                <div class="item-total-price">₹178</div>
-              </div>
-
-              <!-- Chef Hat Prep Notification Box -->
-              <div class="chef-prep-box">
-                <div class="chef-icon-circle">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 13.87A6 6 0 0 1 7.41 2a6 6 0 0 1 10.59 4.87A6 6 0 0 1 18 13.87V21H6v-7.13z"></path><line x1="6" y1="17" x2="18" y2="17"></line></svg>
-                </div>
-                <div>
-                  <div class="prep-text-title">Your food is being prepared</div>
-                  <div class="prep-text-sub">We'll notify you once it's ready!</div>
-                </div>
-              </div>
-
-              <a href="tracking.html" style="font-size: 12px; font-weight: 700; color: var(--primary-orange); text-align: center; margin-top: 4px;">View Live Order Tracking →</a>
             </div>
 
             <!-- RECENT ORDERS SECTION -->
             <div class="recent-orders-card">
-              <div class="section-header" style="margin-bottom: 0;">
+              <div class="section-header" style="margin-bottom: 12px;">
                 <h3 class="order-card-title">Recent Orders</h3>
                 <a href="orders.html" class="view-all-link">View All →</a>
               </div>
-
-              <!-- Order Item 1 -->
-              <div class="recent-order-item">
-                <img src="https://images.unsplash.com/photo-1621996346565-e3d5d6281318?auto=format&fit=crop&w=150&q=80" alt="Order Pasta" class="recent-item-thumb">
-                <div class="recent-order-info">
-                  <span class="recent-order-id">Order #CE1023</span>
-                  <span class="recent-order-details">2 items • ₹238</span>
-                  <span class="recent-order-date">18 Sep 2026, 12:40 PM</span>
-                </div>
-                <span class="status-badge delivered">Delivered</span>
+              <div style="text-align: center; padding: 24px 10px; color: var(--secondary-text);">
+                <p style="font-size: 13px;">No recent orders</p>
               </div>
-
-              <!-- Order Item 2 -->
-              <div class="recent-order-item">
-                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=150&q=80" alt="Order Burger" class="recent-item-thumb">
-                <div class="recent-order-info">
-                  <span class="recent-order-id">Order #CE1022</span>
-                  <span class="recent-order-details">3 items • ₹357</span>
-                  <span class="recent-order-date">18 Sep 2026, 12:40 PM</span>
-                </div>
-                <span class="status-badge cancelled">Cancelled</span>
-              </div>
-
             </div>
 
           </div>

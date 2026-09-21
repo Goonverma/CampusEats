@@ -383,6 +383,16 @@ input, select, textarea {
   border-radius: var(--radius-full);
   object-fit: cover;
   border: 2px solid var(--gold-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-navy);
+  color: var(--gold-primary);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  user-select: none;
+  flex-shrink: 0;
 }
 
 .user-info {

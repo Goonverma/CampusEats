@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     applyPromoBtn.addEventListener('click', () => {
       const code = document.getElementById('promoCodeInput')?.value.toUpperCase().trim();
       if (code === 'CAMPUS25') {
-        localStorage.setItem('campusEats_discount', '0.25');
+        localStorage.setItem(getUserKey('discount'), '0.25');
         showToast('Promo code CAMPUS25 applied (25% OFF)!');
         renderCartItems();
       } else {
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const checkoutBtn = document.getElementById('checkoutBtn');
   if (checkoutBtn) {
     checkoutBtn.addEventListener('click', () => {
-      const cart = JSON.parse(localStorage.getItem('campusEats_cart') || '[]');
+      const cart = getUserCart();
       if (cart.length === 0) {
         showToast('Your cart is empty!', 'error');
         return;
@@ -29,23 +29,33 @@ document.addEventListener('DOMContentLoaded', () => {
       const now = new Date();
       const dateFormatted = now.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) + ', ' + now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
       const itemsSummary = cart.map(i => `${i.name} × ${i.qty}`).join(', ');
-      const currentUser = JSON.parse(localStorage.getItem('campusEats_user') || '{}');
+      const currentUser = getCurrentUser();
 
-      // Clear cart & add new order to history
+      const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+      const discountRate = parseFloat(localStorage.getItem(getUserKey('discount')) || '0');
+      const discountVal = Math.round(subtotal * discountRate);
+      const delivery = subtotal > 200 || subtotal === 0 ? 0 : 25;
+      const taxes = subtotal > 0 ? 18 : 0;
+      const grandTotal = Math.round(subtotal - discountVal + delivery + taxes);
+
+      // Create new order
       const newOrder = {
         id: '#CE' + Math.floor(1000 + Math.random() * 9000),
         items: cart,
         itemsSummary: itemsSummary,
         date: dateFormatted,
         status: 'Preparing',
-        total: calculateTotal(cart),
+        subtotal: subtotal,
+        savings: discountVal,
+        total: grandTotal,
         userEmail: currentUser.email || 'guest'
       };
       
-      const orders = JSON.parse(localStorage.getItem('campusEats_orders') || '[]');
+      const orders = getUserOrders();
       orders.unshift(newOrder);
-      localStorage.setItem('campusEats_orders', JSON.stringify(orders));
-      localStorage.setItem('campusEats_cart', JSON.stringify([]));
+      setUserOrders(orders);
+      setUserCart([]);
+      localStorage.removeItem(getUserKey('discount'));
       
       showToast('Order Placed Successfully! Redirecting to tracker...');
       setTimeout(() => {
@@ -59,7 +69,7 @@ function renderCartItems() {
   const cartContainer = document.getElementById('cartItemsList');
   if (!cartContainer) return;
 
-  const cart = JSON.parse(localStorage.getItem('campusEats_cart') || '[]');
+  const cart = getUserCart();
 
   if (cart.length === 0) {
     cartContainer.innerHTML = `
@@ -67,7 +77,7 @@ function renderCartItems() {
         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom: 12px; color: #9CA3AF;"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
         <h3>Your Cart is Empty</h3>
         <p style="font-size: 13px; margin-top: 4px;">Explore our delicious campus menu!</p>
-        <a href="menu.html" class="hero-btn" style="margin-top: 16px;">Browse Menu →</a>
+        <a href="menu.html" class="hero-btn" style="margin-top: 16px; display: inline-block;">Browse Menu →</a>
       </div>
     `;
     updateSummary(0);
@@ -103,7 +113,7 @@ function renderCartItems() {
 }
 
 function changeCartQty(index, delta) {
-  let cart = JSON.parse(localStorage.getItem('campusEats_cart') || '[]');
+  let cart = getUserCart();
   if (!cart[index]) return;
 
   cart[index].qty += delta;
@@ -111,31 +121,22 @@ function changeCartQty(index, delta) {
     cart.splice(index, 1);
   }
 
-  localStorage.setItem('campusEats_cart', JSON.stringify(cart));
+  setUserCart(cart);
   if (window.updateBadgeCounts) updateBadgeCounts();
   renderCartItems();
 }
 
 function removeCartItem(index) {
-  let cart = JSON.parse(localStorage.getItem('campusEats_cart') || '[]');
+  let cart = getUserCart();
   cart.splice(index, 1);
-  localStorage.setItem('campusEats_cart', JSON.stringify(cart));
+  setUserCart(cart);
   if (window.updateBadgeCounts) updateBadgeCounts();
   renderCartItems();
   showToast('Item removed from cart');
 }
 
-function calculateTotal(cart) {
-  const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-  const discountRate = parseFloat(localStorage.getItem('campusEats_discount') || '0');
-  const discount = subtotal * discountRate;
-  const delivery = subtotal > 200 || subtotal === 0 ? 0 : 25;
-  const taxes = subtotal > 0 ? 18 : 0;
-  return Math.round(subtotal - discount + delivery + taxes);
-}
-
 function updateSummary(cart) {
-  if (typeof cart === 'number') {
+  if (typeof cart === 'number' || !Array.isArray(cart)) {
     document.getElementById('subtotalVal').textContent = '₹0';
     document.getElementById('deliveryVal').textContent = '₹0';
     document.getElementById('taxesVal').textContent = '₹0';
@@ -144,7 +145,7 @@ function updateSummary(cart) {
   }
 
   const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-  const discountRate = parseFloat(localStorage.getItem('campusEats_discount') || '0');
+  const discountRate = parseFloat(localStorage.getItem(getUserKey('discount')) || '0');
   const discount = subtotal * discountRate;
   const delivery = subtotal > 200 || subtotal === 0 ? 0 : 25;
   const taxes = subtotal > 0 ? 18 : 0;

@@ -639,7 +639,7 @@ function renderFilteredItems(items) {
     return;
   }
 
-  const wishlist = JSON.parse(localStorage.getItem('campusEats_wishlist') || '[]');
+  const wishlist = typeof getUserWishlist === 'function' ? getUserWishlist() : [];
 
   grid.innerHTML = items.map(item => `
     <div class="food-card" data-id="${item.id}" data-category="${item.mainCategory}" data-subcategory="${item.subCategory}" data-tags="${item.tags.join(',')}">
