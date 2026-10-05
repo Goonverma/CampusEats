@@ -1,7 +1,6 @@
-/* CampusEats - Profile Controller */
-
 document.addEventListener('DOMContentLoaded', () => {
   renderProfilePage();
+  setupDietPills();
 
   const profileForm = document.getElementById('profileForm');
   if (profileForm) {
@@ -13,22 +12,49 @@ document.addEventListener('DOMContentLoaded', () => {
       const phone = document.getElementById('profPhone').value.trim();
       const hostel = document.getElementById('profHostel').value.trim();
 
+      const selectedDietPrefs = [];
+      document.querySelectorAll('.diet-checkbox-pill input:checked').forEach(cb => {
+        selectedDietPrefs.push(cb.value);
+      });
+
       const updatedUser = {
         ...currentUser,
         name,
         email,
         phone,
         hostel,
+        dietPreferences: selectedDietPrefs,
         role: currentUser.role || 'Student'
       };
 
       setCurrentUser(updatedUser);
+      if (typeof setUserDietPreferences === 'function') {
+        setUserDietPreferences(selectedDietPrefs);
+      }
       renderProfilePage();
       if (window.renderUserProfileInNav) window.renderUserProfileInNav();
-      showToast('Profile updated successfully!');
+      showToast('Profile & Dietary Preferences updated successfully!');
     });
   }
 });
+
+function setupDietPills() {
+  document.querySelectorAll('.diet-checkbox-pill').forEach(pill => {
+    pill.addEventListener('click', (e) => {
+      const checkbox = pill.querySelector('input[type="checkbox"]');
+      if (!checkbox) return;
+      // Allow label click to toggle state cleanly
+      if (e.target !== checkbox) {
+        checkbox.checked = !checkbox.checked;
+      }
+      if (checkbox.checked) {
+        pill.classList.add('selected');
+      } else {
+        pill.classList.remove('selected');
+      }
+    });
+  });
+}
 
 function renderProfilePage() {
   const user = getCurrentUser();
@@ -42,6 +68,24 @@ function renderProfilePage() {
   if (emailInput) emailInput.value = user.email || '';
   if (phoneInput) phoneInput.value = user.phone || '';
   if (hostelInput) hostelInput.value = user.hostel || '';
+
+  // Render diet preferences pills state
+  const dietPrefs = (typeof getUserDietPreferences === 'function') 
+    ? getUserDietPreferences() 
+    : (user.dietPreferences || []);
+
+  document.querySelectorAll('.diet-checkbox-pill').forEach(pill => {
+    const checkbox = pill.querySelector('input[type="checkbox"]');
+    if (checkbox) {
+      if (dietPrefs.includes(checkbox.value)) {
+        checkbox.checked = true;
+        pill.classList.add('selected');
+      } else {
+        checkbox.checked = false;
+        pill.classList.remove('selected');
+      }
+    }
+  });
 
   const profNameTitle = document.querySelector('.profile-name');
   if (profNameTitle) profNameTitle.textContent = user.name || 'Student Profile';

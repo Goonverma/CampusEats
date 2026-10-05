@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hosteller Access - CampusEats</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/hosteller.css">
+</head>
+
+<body class="hosteller-body">
+    <main class="hosteller-access-shell">
+        <a class="hosteller-back-link" href="dashboard.html">&larr; Back to CampusEats</a>
+        <section class="hosteller-panel" aria-labelledby="access-title">
+            <a class="hosteller-brand" href="dashboard.html" aria-label="CampusEats home">
+                <span class="hosteller-brand-icon" aria-hidden="true">C</span>
+                <span>Campus<span>Eats</span></span>
+            </a>
+
+            <div id="auth-view">
+                <p class="hosteller-eyebrow">HOSTEL MEAL ACCESS</p>
+                <h1 id="access-title">Hosteller Sign In</h1>
+                <p class="hosteller-subtitle">Use your hosteller details to access meal booking.</p>
+
+                <div class="hosteller-mode-switch" role="tablist" aria-label="Hosteller access mode">
+                    <button type="button" id="signin-tab" class="is-active" role="tab" aria-selected="true">Sign
+                        In</button>
+                    <button type="button" id="signup-tab" role="tab" aria-selected="false">Sign Up</button>
+                </div>
+
+                <form id="hosteller-signin-form" class="hosteller-form">
+                    <div class="hosteller-field">
+                        <label for="hosteller-signin-email">Email</label>
+                        <input id="hosteller-signin-email" name="email" type="email" autocomplete="email"
+                            placeholder="you@university.edu" required>
+                    </div>
+                    <div class="hosteller-field">
+                        <label for="hosteller-signin-password">Password</label>
+                        <input id="hosteller-signin-password" name="password" type="password"
+                            autocomplete="current-password" placeholder="Enter your password" required>
+                    </div>
+                    <p class="hosteller-form-error" id="signin-error" role="alert" hidden></p>
+                    <button class="hosteller-primary-button" type="submit">Sign In</button>
+                    <p class="hosteller-switch-copy">New hosteller? <button type="button" data-mode="signup">Create an
+                            account</button></p>
+                </form>
+
+                <form id="hosteller-signup-form" class="hosteller-form" hidden>
+                    <div class="hosteller-field">
+                        <label for="hosteller-name">Name</label>
+                        <input id="hosteller-name" name="name" type="text" autocomplete="name" placeholder="Full name"
+                            required>
+                    </div>
+                    <div class="hosteller-field">
+                        <label for="hosteller-email">Email</label>
+                        <input id="hosteller-email" name="email" type="email" autocomplete="email"
+                            placeholder="you@university.edu" required>
+                    </div>
+                    <div class="hosteller-field">
+                        <label for="hosteller-password">Password</label>
+                        <input id="hosteller-password" name="password" type="password" autocomplete="new-password"
+                            placeholder="Create a password" required>
+                    </div>
+                    <div class="hosteller-form-grid">
+                        <div class="hosteller-field">
+                            <label for="hosteller-block">Block</label>
+                            <input id="hosteller-block" name="block" type="text" autocomplete="off" placeholder="Block"
+                                required>
+                        </div>
+                        <div class="hosteller-field">
+                            <label for="hosteller-room">Room Number</label>
+                            <input id="hosteller-room" name="roomNumber" type="text" autocomplete="off"
+                                placeholder="Room number" required>
+                        </div>
+                    </div>
+                    <div class="hosteller-field">
+                        <label for="hosteller-enrollment">Enrollment Number</label>
+                        <input id="hosteller-enrollment" name="enrollmentNumber" type="text" autocomplete="off"
+                            placeholder="Enrollment number" required>
+                    </div>
+                    <p class="hosteller-form-error" id="signup-error" role="alert" hidden></p>
+                    <button class="hosteller-primary-button" type="submit">Submit for Verification</button>
+                    <p class="hosteller-switch-copy">Already registered? <button type="button"
+                            data-mode="signin">Hosteller Sign In</button></p>
+                </form>
+            </div>
+
+            <section id="verification-view" class="hosteller-status-view" aria-live="polite" hidden>
+                <span class="hosteller-status-symbol" id="verification-symbol" aria-hidden="true">...</span>
+                <p class="hosteller-eyebrow">HOSTELLER ACCOUNT</p>
+                <h1 id="verification-title">Hostel Verification Pending</h1>
+                <p class="hosteller-status-message" id="verification-message"></p>
+                <p class="hosteller-form-error" id="verification-error" role="alert" hidden></p>
+                <span class="hosteller-status-pill" id="verification-status">Pending Verification</span>
+                <button type="button" class="hosteller-primary-button" id="status-signin">Return to Hosteller Sign
+                    In</button>
+            </section>
+
+            <p class="hosteller-preview-note">Hosteller accounts and verification status are managed through CampusEats
+                Firebase.</p>
+            <a class="hosteller-admin-link" href="hostel-admin.html">Hostel verification admin</a>
+        </section>
+    </main>
+    <script type="module" src="js/hosteller.js"></script>
+</body>
+
+</html>

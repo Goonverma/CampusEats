@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hostel Verification - CampusEats</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/meal-management.css">
+    <link rel="stylesheet" href="css/hosteller.css">
+</head>
+
+<body class="hosteller-body">
+    <div class="hostel-admin-layout">
+        <header class="hostel-admin-header">
+            <a class="hosteller-brand" href="dashboard.html" aria-label="CampusEats home">
+                <span class="hosteller-brand-icon" aria-hidden="true">C</span>
+                <span>Campus<span>Eats</span></span>
+            </a>
+            <nav aria-label="Admin navigation">
+                <a href="dashboard.html">CampusEats</a>
+                <a href="login.html">Admin Sign In</a>
+                <a href="hosteller-access.html?mode=signin">Hosteller Access</a>
+            </nav>
+        </header>
+
+        <main class="hostel-admin-content mm-content">
+            <section class="hostel-admin-heading">
+                <div>
+                    <p class="mm-eyebrow">HOSTEL MESS ADMIN</p>
+                    <h1>Hostel Verification Requests</h1>
+                    <p>Review hosteller details before enabling meal booking.</p>
+                </div>
+                <span class="hosteller-preview-tag">Firestore data</span>
+            </section>
+
+            <section class="hostel-admin-section" aria-labelledby="requests-heading">
+                <div class="hostel-admin-section-heading">
+                    <h2 id="requests-heading">Requests</h2>
+                    <span id="request-count" class="mm-data-tag">0 requests</span>
+                </div>
+                <div id="verification-requests" class="hostel-request-list" aria-live="polite">
+                    <div class="hostel-admin-empty">No hostel verification requests available.</div>
+                </div>
+                <p class="hosteller-form-error" id="admin-error" role="alert" hidden></p>
+            </section>
+
+            <section class="hostel-admin-section" aria-labelledby="demand-heading">
+                <div class="hostel-admin-section-heading">
+                    <div>
+                        <p class="mm-eyebrow">MESS OVERVIEW</p>
+                        <h2 id="demand-heading">Today's Meal Demand</h2>
+                    </div>
+                    <span class="mm-data-tag">No data available yet</span>
+                </div>
+                <div class="mm-demand-grid">
+                    <article class="mm-demand-item"><span>Breakfast</span><strong>--</strong><small>Students
+                            Booked</small></article>
+                    <article class="mm-demand-item"><span>Lunch</span><strong>--</strong><small>Students Booked</small>
+                    </article>
+                    <article class="mm-demand-item"><span>Dinner</span><strong>--</strong><small>Students Booked</small>
+                    </article>
+                </div>
+            </section>
+
+            <section class="hostel-admin-section" aria-labelledby="preparation-heading">
+                <div class="hostel-admin-section-heading">
+                    <div>
+                        <p class="mm-eyebrow">MESS OPERATIONS</p>
+                        <h2 id="preparation-heading">Meal Preparation</h2>
+                    </div>
+                    <span class="mm-data-tag">No data available yet</span>
+                </div>
+                <div class="mm-table-wrap">
+                    <table class="mm-preparation-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Meal</th>
+                                <th scope="col">Booked</th>
+                                <th scope="col">Prepared</th>
+                                <th scope="col">Served</th>
+                                <th scope="col">Leftover</th>
+                                <th scope="col">Waste</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Breakfast</th>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>--</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Lunch</th>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>--</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Dinner</th>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>--</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="hostel-admin-section" aria-labelledby="waste-heading">
+                <div class="hostel-admin-section-heading">
+                    <div>
+                        <p class="mm-eyebrow">WASTE TRACKING</p>
+                        <h2 id="waste-heading">Waste Summary</h2>
+                    </div>
+                    <span class="mm-data-tag">No data available yet</span>
+                </div>
+                <div class="mm-waste-grid">
+                    <div><span>Total Meals Prepared</span><strong>--</strong></div>
+                    <div><span>Total Meals Served</span><strong>--</strong></div>
+                    <div><span>Total Leftover</span><strong>--</strong></div>
+                    <div><span>Total Waste</span><strong>--</strong></div>
+                    <div><span>Waste Percentage</span><strong>--</strong></div>
+                </div>
+                <p class="mm-data-note">No waste data available yet.</p>
+            </section>
+
+            <section class="mm-planning" aria-labelledby="planning-heading">
+                <span class="mm-planning-mark" aria-hidden="true">↗</span>
+                <div>
+                    <p class="mm-eyebrow">LOOKING AHEAD</p>
+                    <h2 id="planning-heading">Future Meal Planning</h2>
+                    <p>Historical meal booking and waste data can help improve future meal preparation.</p>
+                </div>
+            </section>
+            <p class="hosteller-preview-note">Verification requests are loaded from Firestore. Review requires the
+                Firebase admin custom claim.</p>
+        </main>
+    </div>
+    <script type="module" src="js/hosteller.js"></script>
+</body>
+
+</html>

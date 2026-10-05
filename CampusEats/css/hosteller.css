@@ -1,0 +1,520 @@
+.hosteller-body {
+    display: block;
+    min-height: 100vh;
+    background: var(--bg-color);
+}
+
+.hosteller-access-shell {
+    width: min(100% - 32px, 520px);
+    margin: 0 auto;
+    padding: 30px 0 44px;
+}
+
+.hosteller-back-link {
+    display: inline-block;
+    margin: 0 0 18px 3px;
+    color: var(--secondary-text);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.hosteller-back-link:hover,
+.hostel-admin-header nav a:hover {
+    color: #8A6500;
+}
+
+.hosteller-panel {
+    background: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    padding: 30px;
+}
+
+.hosteller-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--primary-navy);
+    font-size: 19px;
+    font-weight: 800;
+    margin-bottom: 26px;
+}
+
+.hosteller-brand>span:last-child>span {
+    color: #A77B00;
+}
+
+.hosteller-brand-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+    background: var(--gold-primary);
+    color: var(--primary-navy);
+    display: grid;
+    place-items: center;
+    font-size: 15px;
+}
+
+.hosteller-eyebrow {
+    color: #8A6500;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.hosteller-panel h1 {
+    color: var(--primary-navy);
+    font-size: 25px;
+    line-height: 1.25;
+    margin-top: 5px;
+}
+
+.hosteller-subtitle {
+    color: var(--secondary-text);
+    font-size: 12px;
+    margin-top: 7px;
+}
+
+.hosteller-mode-switch {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid var(--border-color);
+    margin: 22px 0 18px;
+}
+
+.hosteller-mode-switch button {
+    min-height: 42px;
+    color: var(--secondary-text);
+    font-size: 12px;
+    font-weight: 700;
+    border-bottom: 2px solid transparent;
+}
+
+.hosteller-mode-switch button.is-active {
+    color: var(--primary-navy);
+    border-color: var(--gold-accent);
+}
+
+.hosteller-form {
+    display: grid;
+    gap: 14px;
+}
+
+.hosteller-form[hidden],
+.hosteller-status-view[hidden] {
+    display: none;
+}
+
+.hosteller-field {
+    display: grid;
+    gap: 6px;
+    min-width: 0;
+}
+
+.hosteller-field label {
+    color: #334155;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.hosteller-field input {
+    width: 100%;
+    height: 42px;
+    border: 1px solid #CBD5E1;
+    border-radius: 7px;
+    padding: 0 12px;
+    color: var(--primary-navy);
+    background: var(--white);
+    font-size: 12px;
+    outline: none;
+}
+
+.hosteller-field input::placeholder {
+    color: #94A3B8;
+}
+
+.hosteller-field input:focus {
+    border-color: var(--gold-accent);
+    box-shadow: 0 0 0 3px var(--soft-gold);
+}
+
+.hosteller-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.hosteller-primary-button {
+    min-height: 43px;
+    border-radius: 7px;
+    background: var(--gold-primary);
+    color: var(--primary-navy);
+    font-size: 12px;
+    font-weight: 800;
+    padding: 0 16px;
+    transition: background 0.18s ease;
+}
+
+.hosteller-primary-button:hover {
+    background: var(--gold-accent);
+}
+
+.hosteller-switch-copy {
+    text-align: center;
+    color: var(--secondary-text);
+    font-size: 11px;
+}
+
+.hosteller-switch-copy button {
+    color: #8A6500;
+    font: inherit;
+    font-weight: 800;
+}
+
+.hosteller-form-error {
+    color: #B91C1C;
+    font-size: 11px;
+}
+
+.hosteller-preview-note {
+    color: var(--secondary-text);
+    font-size: 10px;
+    line-height: 1.5;
+    text-align: center;
+    margin: 18px 0 0;
+}
+
+.hosteller-admin-link {
+    display: block;
+    width: fit-content;
+    color: #64748B;
+    font-size: 10px;
+    font-weight: 700;
+    margin: 12px auto 0;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.hosteller-status-view {
+    text-align: center;
+    padding: 20px 0 4px;
+}
+
+.hosteller-status-symbol {
+    width: 52px;
+    height: 52px;
+    margin: 0 auto 18px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--soft-gold);
+    color: #8A6500;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.hosteller-status-message {
+    color: var(--secondary-text);
+    font-size: 12px;
+    line-height: 1.6;
+    margin: 10px 0 16px;
+}
+
+.hosteller-status-pill {
+    display: inline-flex;
+    border-radius: 999px;
+    padding: 7px 11px;
+    background: var(--soft-gold);
+    color: #805D00;
+    font-size: 10px;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+.hosteller-status-view .hosteller-primary-button {
+    width: 100%;
+}
+
+.hosteller-status-view.is-rejected .hosteller-status-symbol {
+    background: #FEE2E2;
+    color: #B91C1C;
+}
+
+.hosteller-status-view.is-rejected .hosteller-status-pill {
+    background: #FEE2E2;
+    color: #B91C1C;
+}
+
+.hosteller-status-view.is-approved .hosteller-status-symbol {
+    background: #DCFCE7;
+    color: #166534;
+}
+
+.hosteller-status-view.is-approved .hosteller-status-pill {
+    background: #DCFCE7;
+    color: #166534;
+}
+
+.hostel-admin-layout {
+    min-height: 100vh;
+}
+
+.hostel-admin-header {
+    min-height: 70px;
+    background: var(--white);
+    border-bottom: 1px solid var(--border-color);
+    padding: 0 max(24px, calc((100vw - 1260px) / 2));
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.hostel-admin-header .hosteller-brand {
+    margin: 0;
+}
+
+.hostel-admin-header nav {
+    display: flex;
+    gap: 20px;
+}
+
+.hostel-admin-header nav a {
+    color: var(--secondary-text);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.hostel-admin-content {
+    padding-top: 30px;
+}
+
+.hostel-admin-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin: 4px 0 28px;
+}
+
+.hostel-admin-heading h1 {
+    color: var(--primary-navy);
+    font-size: 26px;
+    line-height: 1.25;
+    margin-top: 5px;
+}
+
+.hostel-admin-heading p:last-child {
+    color: var(--secondary-text);
+    font-size: 12px;
+    margin-top: 7px;
+}
+
+.hosteller-preview-tag {
+    padding: 7px 10px;
+    background: #F1F5F9;
+    border-radius: 5px;
+    color: var(--secondary-text);
+    font-size: 10px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.hostel-admin-section {
+    margin-bottom: 30px;
+}
+
+.hostel-admin-section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 13px;
+}
+
+.hostel-admin-section-heading h2 {
+    color: var(--primary-navy);
+    font-size: 18px;
+    font-weight: 800;
+    margin-top: 3px;
+}
+
+.hostel-request-list {
+    display: grid;
+    gap: 10px;
+}
+
+.hostel-admin-empty {
+    padding: 22px;
+    background: var(--white);
+    border: 1px dashed #CBD5E1;
+    border-radius: 8px;
+    color: var(--secondary-text);
+    font-size: 12px;
+    text-align: center;
+}
+
+.hostel-request-card {
+    background: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 17px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 16px;
+    align-items: center;
+}
+
+.hostel-request-details {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px 18px;
+}
+
+.hostel-request-details div {
+    min-width: 0;
+}
+
+.hostel-request-details dt {
+    color: var(--secondary-text);
+    font-size: 9px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.hostel-request-details dd {
+    color: var(--primary-navy);
+    font-size: 11px;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+.hostel-request-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.hostel-request-actions button {
+    min-height: 34px;
+    border-radius: 6px;
+    padding: 0 11px;
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.hostel-approve-button {
+    color: #166534;
+    background: #DCFCE7;
+}
+
+.hostel-approve-button:hover {
+    background: #BBF7D0;
+}
+
+.hostel-reject-button {
+    color: #B91C1C;
+    background: #FEE2E2;
+}
+
+.hostel-reject-button:hover {
+    background: #FECACA;
+}
+
+.hostel-request-status {
+    display: inline-flex;
+    border-radius: 999px;
+    padding: 5px 8px;
+    font-size: 9px;
+    font-weight: 800;
+}
+
+.hostel-request-status.pending {
+    color: #805D00;
+    background: var(--soft-gold);
+}
+
+.hostel-request-status.approved {
+    color: #166534;
+    background: #DCFCE7;
+}
+
+.hostel-request-status.rejected {
+    color: #B91C1C;
+    background: #FEE2E2;
+}
+
+@media (max-width: 700px) {
+    .hosteller-panel {
+        padding: 23px 18px;
+    }
+
+    .hostel-admin-header {
+        padding: 0 16px;
+    }
+
+    .hostel-admin-header nav {
+        gap: 12px;
+    }
+
+    .hostel-admin-content {
+        padding: 22px 16px;
+    }
+
+    .hostel-admin-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .hostel-admin-heading h1 {
+        font-size: 22px;
+    }
+
+    .hostel-request-card {
+        grid-template-columns: 1fr;
+    }
+
+    .hostel-request-details {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .hostel-request-actions {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 420px) {
+    .hostel-admin-header {
+        min-height: 0;
+        padding: 12px 16px;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .hosteller-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hostel-admin-header nav a {
+        font-size: 10px;
+    }
+
+    .hosteller-brand {
+        font-size: 16px;
+    }
+
+    .hostel-admin-header .hosteller-brand {
+        gap: 6px;
+    }
+
+    .hostel-request-details {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+
+    .hostel-admin-section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}

@@ -97,3 +97,31 @@
     grid-template-columns: 1fr;
   }
 }
+
+.diet-checkbox-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  background: #F8FAFC;
+  border: 1px solid #CBD5E1;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.diet-checkbox-pill:hover {
+  border-color: #FACC15;
+  background: #FEFCE8;
+}
+
+.diet-checkbox-pill.selected {
+  background: #0F172A;
+  color: #FACC15;
+  border-color: #FACC15;
+  font-weight: 700;
+}
+

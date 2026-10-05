@@ -1,25 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CampusEats - Modern Campus Food Ordering</title>
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Caveat:wght@600;700&display=swap"
+    rel="stylesheet">
+  <!-- Stylesheets -->
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/dashboard.css">
 </head>
+
 <body>
 
   <div class="app-container">
 
-    <!-- LEFT SIDEBAR -->
+    <!-- ==================== LEFT SIDEBAR ==================== -->
     <aside class="sidebar">
       <div>
         <div class="brand-header">
           <div class="logo-container">
             <div class="logo-icon">
+              <!-- Dish / Cloche Icon -->
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                 <path d="M12 4a8 8 0 0 0-8 8v1h16v-1a8 8 0 0 0-8-8z"></path>
                 <path d="M4 17h16"></path>
@@ -34,63 +41,114 @@
         </div>
 
         <nav class="nav-menu">
+          <a href="hosteller-access.html?mode=signin" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M3 11h18"></path>
+              <path d="M5 11a7 7 0 0 1 14 0"></path>
+              <path d="M5 14h14l-1 6H6l-1-6z"></path>
+              <path d="M12 4V2"></path>
+            </svg>
+            <span>Meal Management</span>
+          </a>
           <a href="dashboard.html" class="nav-item active">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
             <span>Home</span>
           </a>
           <a href="menu.html" class="nav-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path><line x1="4" y1="3" x2="20" y2="3"></line></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+              <line x1="4" y1="3" x2="20" y2="3"></line>
+            </svg>
             <span>Menu</span>
           </a>
           <a href="wishlist.html" class="nav-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path
+                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+              </path>
+            </svg>
             <span>Wishlist</span>
           </a>
           <a href="cart.html" class="nav-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 2L3 6v14a2 2 0 0 1-2 2h14a2 2 0 0 1 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
             <span>Cart</span>
             <span class="badge-count">2</span>
           </a>
           <a href="orders.html" class="nav-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line>
+              <path
+                d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+              </path>
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+              <line x1="12" y1="22.08" x2="12" y2="12"></line>
+            </svg>
             <span>My Orders</span>
           </a>
           <a href="tracking.html" class="nav-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
             <span>Track Order</span>
           </a>
           <a href="profile.html" class="nav-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
             <span>Profile</span>
           </a>
 
           <div class="nav-divider"></div>
 
           <a href="profile.html" class="nav-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path
+                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+              </path>
+            </svg>
             <span>Settings</span>
           </a>
           <a href="login.html" class="nav-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+              <polyline points="16 17 21 12 16 7"></polyline>
+              <line x1="21" y1="12" x2="9" y2="12"></line>
+            </svg>
             <span>Logout</span>
           </a>
         </nav>
       </div>
 
+      <!-- Sidebar Bottom Campus Graphic -->
       <div class="sidebar-bottom">
         <svg class="campus-illustration" viewBox="0 0 200 100" fill="none" stroke="#8492A6" stroke-width="1.2">
-          <path d="M20 90 L180 90" stroke-width="1.5"/>
-          <path d="M85 90 V45 H115 V90 M85 45 L100 20 L115 45 M100 20 V10"/>
-          <circle cx="100" cy="35" r="5" stroke-width="1"/>
-          <rect x="90" y="55" width="6" height="10" rx="1"/>
-          <rect x="104" y="55" width="6" height="10" rx="1"/>
-          <rect x="90" y="72" width="6" height="12" rx="1"/>
-          <rect x="104" y="72" width="6" height="12" rx="1"/>
-          <path d="M50 90 V60 H85 M115 60 H150 V90"/>
-          <circle cx="35" cy="75" r="14" fill="#E2E8F0" fill-opacity="0.5"/>
-          <path d="M35 90 V82"/>
-          <circle cx="165" cy="75" r="14" fill="#E2E8F0" fill-opacity="0.5"/>
-          <path d="M165 90 V82"/>
+          <!-- Sketch clock tower campus building line art -->
+          <path d="M20 90 L180 90" stroke-width="1.5" />
+          <path d="M85 90 V45 H115 V90 M85 45 L100 20 L115 45 M100 20 V10" />
+          <circle cx="100" cy="35" r="5" stroke-width="1" />
+          <!-- Windows -->
+          <rect x="90" y="55" width="6" height="10" rx="1" />
+          <rect x="104" y="55" width="6" height="10" rx="1" />
+          <rect x="90" y="72" width="6" height="12" rx="1" />
+          <rect x="104" y="72" width="6" height="12" rx="1" />
+          <!-- Side wings -->
+          <path d="M50 90 V60 H85 M115 60 H150 V90" />
+          <!-- Trees -->
+          <circle cx="35" cy="75" r="14" fill="#E2E8F0" fill-opacity="0.5" />
+          <path d="M35 90 V82" />
+          <circle cx="165" cy="75" r="14" fill="#E2E8F0" fill-opacity="0.5" />
+          <path d="M165 90 V82" />
         </svg>
         <div class="sidebar-quote">
           Good Food <span class="leaf-icon">🍃</span><br>Brighter Minds
@@ -98,22 +156,29 @@
       </div>
     </aside>
 
-    <!-- MAIN WRAPPER -->
+    <!-- ==================== MAIN WRAPPER ==================== -->
     <div class="main-wrapper">
 
-      <!-- TOP NAVBAR -->
+      <!-- ==================== TOP NAVBAR ==================== -->
       <header class="top-navbar">
         <div class="search-box">
-          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
           <input type="text" class="search-input" placeholder="Search for food, drinks, or restaurants...">
         </div>
 
         <div class="navbar-right">
           <button class="nav-icon-btn notification-btn" title="Notifications">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
             <span class="notification-badge">3</span>
           </button>
 
+          <!-- Notification Dropdown -->
           <div class="notification-dropdown">
             <div class="notif-header">
               <span>Notifications</span>
@@ -150,261 +215,316 @@
               <span class="user-name">User</span>
               <span class="user-role">Student</span>
             </div>
-            <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
           </a>
         </div>
       </header>
 
       <!-- ==================== DASHBOARD CONTENT AREA ==================== -->
       <main class="content-area">
-        <div class="dashboard-grid">
 
-          <!-- LEFT MAIN COLUMN -->
-          <div class="main-column">
+        <!-- 1. HERO ROW (Hero Card + Deal Card) -->
+        <div class="hero-row">
 
-            <!-- HERO ROW (Hero Card + Deal Card) -->
-            <div class="hero-row">
-              
-              <!-- HERO BANNER -->
-              <div class="hero-card">
-                <div class="hero-left">
-                  <div class="hero-greeting">Good Afternoon,</div>
-                  <div class="hero-name">Student! <span class="wave-emoji">👋</span></div>
-                  <div class="hero-subtitle">What are you craving today?</div>
-                  <a href="menu.html" class="hero-btn">Explore Menu →</a>
-                </div>
-
-                <div class="hero-center-text">
-                  Fuel<br>Your<br>Campus<br>Life <span class="heart-accent">❤️</span>
-                </div>
-
-                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=400&q=80" alt="Healthy Buddha Food Bowl" class="hero-right-img">
-              </div>
-
-              <!-- TODAY'S CAMPUS DEAL CARD -->
-              <div class="deal-card">
-                <div class="deal-header">
-                  <div class="deal-title-box">
-                    <svg class="deal-crown-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm14 3c0 .6-.4 1-1 1H6c-.6 0-1-.4-1-1v-1h14v1z"></path></svg>
-                    <span class="deal-title">Today's<br>Campus Deal</span>
-                  </div>
-                  <div class="deal-save-badge">Save<br>25%</div>
-                </div>
-
-                <div class="deal-body">
-                  <div class="deal-info">
-                    <div class="deal-items-text">Burger + Fries + Drink</div>
-                    <div class="deal-price-row">
-                      <span class="deal-current-price">₹149</span>
-                      <span class="deal-old-price">₹199</span>
-                    </div>
-                    <button class="deal-btn grab-deal-btn">Grab Deal</button>
-                  </div>
-                  <div class="deal-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=300&q=80" alt="Burger Combo Deal" class="deal-img">
-                  </div>
-                </div>
-              </div>
-
+          <!-- HERO BANNER -->
+          <div class="hero-card">
+            <div class="hero-left">
+              <div class="hero-greeting">Good Afternoon,</div>
+              <div class="hero-name">Student! <span class="wave-emoji">👋</span></div>
+              <div class="hero-subtitle">What are you craving today?</div>
+              <a href="menu.html" class="hero-btn">Explore Menu →</a>
             </div>
 
-            <!-- KPI CARDS ROW -->
-            <div class="kpi-row">
-              <!-- Card 1 -->
-              <div class="kpi-card">
-                <div class="kpi-icon-box">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
-                </div>
-                <div class="kpi-details">
-                  <div class="kpi-number">0</div>
-                  <div class="kpi-label">Total Orders</div>
-                </div>
-              </div>
-
-              <!-- Card 2 -->
-              <div class="kpi-card">
-                <div class="kpi-icon-box">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                </div>
-                <div class="kpi-details">
-                  <div class="kpi-number">0</div>
-                  <div class="kpi-label">Wishlist Items</div>
-                </div>
-              </div>
-
-              <!-- Card 3 -->
-              <div class="kpi-card">
-                <div class="kpi-icon-box">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
-                </div>
-                <div class="kpi-details">
-                  <div class="kpi-number">₹0</div>
-                  <div class="kpi-label">Total Saved</div>
-                </div>
-              </div>
-
-              <!-- Card 4 -->
-              <div class="kpi-card">
-                <div class="kpi-icon-box">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                </div>
-                <div class="kpi-details">
-                  <div class="kpi-number">0</div>
-                  <div class="kpi-label">Favourite Items</div>
-                </div>
-              </div>
+            <div class="hero-center-text">
+              Fuel<br>Your<br>Campus<br>Life <span class="heart-accent">❤️</span>
             </div>
 
-            <!-- POPULAR NEAR YOU -->
-            <section>
-              <div class="section-header">
-                <h2 class="section-title">Popular Near You</h2>
-                <a href="menu.html" class="view-all-link">View All →</a>
-              </div>
-
-              <div class="food-grid">
-                <div class="food-card" data-id="paneer-burger" data-category="snacks">
-                  <div class="food-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=400&q=80" class="food-img" alt="Paneer Burger">
-                    <button class="fav-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></button>
-                  </div>
-                  <div class="food-info">
-                    <div class="food-name">Paneer Burger</div>
-                    <div class="food-meta">
-                      <div class="food-rating"><svg class="star-icon" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> 4.6 (120)</div>
-                      <div class="food-time">⏱ 15 min</div>
-                    </div>
-                    <div class="food-bottom">
-                      <div class="food-price">₹89</div>
-                      <button class="add-cart-btn">Add</button>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="food-card" data-id="white-sauce-pasta" data-category="lunch">
-                  <div class="food-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1621996346565-e3d5d6281318?auto=format&fit=crop&w=400&q=80" class="food-img" alt="White Sauce Pasta">
-                    <button class="fav-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></button>
-                  </div>
-                  <div class="food-info">
-                    <div class="food-name">White Sauce Pasta</div>
-                    <div class="food-meta">
-                      <div class="food-rating"><svg class="star-icon" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> 4.4 (98)</div>
-                      <div class="food-time">⏱ 20 min</div>
-                    </div>
-                    <div class="food-bottom">
-                      <div class="food-price">₹119</div>
-                      <button class="add-cart-btn">Add</button>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="food-card" data-id="paneer-wrap" data-category="snacks">
-                  <div class="food-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=400&q=80" class="food-img" alt="Paneer Wrap">
-                    <button class="fav-btn active"><svg width="14" height="14" viewBox="0 0 24 24" fill="#EF4444" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></button>
-                  </div>
-                  <div class="food-info">
-                    <div class="food-name">Paneer Wrap</div>
-                    <div class="food-meta">
-                      <div class="food-rating"><svg class="star-icon" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> 4.5 (210)</div>
-                      <div class="food-time">⏱ 15 min</div>
-                    </div>
-                    <div class="food-bottom">
-                      <div class="food-price">₹99</div>
-                      <div class="qty-control">
-                        <button class="qty-btn minus">-</button>
-                        <span class="qty-val">1</span>
-                        <button class="qty-btn plus">+</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="food-card" data-id="margherita-pizza" data-category="lunch">
-                  <div class="food-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=400&q=80" class="food-img" alt="Margherita Pizza">
-                    <button class="fav-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></button>
-                  </div>
-                  <div class="food-info">
-                    <div class="food-name">Margherita Pizza</div>
-                    <div class="food-meta">
-                      <div class="food-rating"><svg class="star-icon" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> 4.7 (310)</div>
-                      <div class="food-time">⏱ 25 min</div>
-                    </div>
-                    <div class="food-bottom">
-                      <div class="food-price">₹149</div>
-                      <button class="add-cart-btn">Add</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            <!-- CATEGORIES -->
-            <section>
-              <div class="section-header">
-                <h2 class="section-title">Categories</h2>
-                <a href="menu.html" class="view-all-link">View All →</a>
-              </div>
-
-              <div class="categories-list">
-                <button class="category-btn active" data-category="all"><svg class="cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect></svg><span>All</span></button>
-                <button class="category-btn" data-category="breakfast"><svg class="cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle></svg><span>Breakfast</span></button>
-                <button class="category-btn" data-category="lunch"><svg class="cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4a8 8 0 0 0-8 8v1h16v-1a8 8 0 0 0-8-8z"></path><path d="M4 17h16"></path></svg><span>Lunch</span></button>
-                <button class="category-btn" data-category="snacks"><svg class="cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8V5a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v3"></path><path d="M2 8h20l-2 12H4L2 8z"></path></svg><span>Snacks</span></button>
-                <button class="category-btn" data-category="drinks"><svg class="cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path></svg><span>Drinks</span></button>
-                <button class="category-btn" data-category="desserts"><svg class="cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8"></path></svg><span>Desserts</span></button>
-                <button class="category-btn" data-category="healthy"><svg class="cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.7 10-10 10z"></path></svg><span>Healthy</span></button>
-              </div>
-            </section>
-
-            <!-- PROMO BANNER -->
-            <div class="promo-banner">
-              <div class="banner-left">
-                <div class="banner-heading">Good Food <span class="leaf-accent">🍃</span><br>Happier You</div>
-                <div class="banner-quote">"Great food fuels great conversations and even greater ideas."</div>
-              </div>
-            </div>
-
+            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=400&q=80"
+              alt="Healthy Buddha Food Bowl" class="hero-right-img">
           </div>
 
-          <!-- RIGHT SIDE COLUMN -->
-          <div class="side-column">
-
-            <!-- YOUR CURRENT ORDER CARD -->
-            <div class="current-order-card">
-              <div class="order-card-header">
-                <div class="order-card-title">Your Current Order</div>
+          <!-- TODAY'S CAMPUS DEAL CARD -->
+          <div class="deal-card">
+            <div class="deal-header">
+              <div class="deal-title-box">
+                <svg class="deal-crown-icon" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm14 3c0 .6-.4 1-1 1H6c-.6 0-1-.4-1-1v-1h14v1z">
+                  </path>
+                </svg>
+                <span class="deal-title">Today's<br>Campus Deal</span>
               </div>
-              <div style="text-align: center; padding: 28px 12px; color: var(--secondary-text);">
-                <div style="font-size: 32px; margin-bottom: 8px;">🛍️</div>
-                <h4 style="font-size: 15px; font-weight: 700; color: var(--primary-navy); margin-bottom: 4px;">No active order</h4>
-                <p style="font-size: 12px; margin-bottom: 14px; color: var(--secondary-text);">Place an order to track it here.</p>
-                <a href="menu.html" class="hero-btn" style="display: inline-block; padding: 8px 16px; font-size: 12px;">Browse Menu →</a>
-              </div>
+              <div class="deal-save-badge">Save<br>25%</div>
             </div>
 
-            <!-- RECENT ORDERS SECTION -->
-            <div class="recent-orders-card">
-              <div class="section-header" style="margin-bottom: 12px;">
-                <h3 class="order-card-title">Recent Orders</h3>
-                <a href="orders.html" class="view-all-link">View All →</a>
+            <div class="deal-body">
+              <div class="deal-info">
+                <div class="deal-items-text">Burger + Fries + Drink</div>
+                <div class="deal-price-row">
+                  <span class="deal-current-price">₹149</span>
+                  <span class="deal-old-price">₹199</span>
+                </div>
+                <button class="deal-btn grab-deal-btn">Grab Deal</button>
               </div>
-              <div style="text-align: center; padding: 24px 10px; color: var(--secondary-text);">
-                <p style="font-size: 13px;">No recent orders</p>
+              <div class="deal-img-wrapper">
+                <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=300&q=80"
+                  alt="Burger Combo Deal" class="deal-img">
               </div>
             </div>
-
           </div>
 
         </div>
+
+        <!-- 2. KPI CARDS ROW (4 Equal Cards in 1 Row) -->
+        <div class="kpi-row">
+          <!-- Card 1 -->
+          <a href="orders.html" class="kpi-card is-clickable" aria-label="Total Orders - View My Orders">
+            <div class="kpi-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <path d="M16 10a4 4 0 0 1-8 0"></path>
+              </svg>
+            </div>
+            <div class="kpi-details">
+              <div class="kpi-number">0</div>
+              <div class="kpi-label">Total Orders</div>
+            </div>
+          </a>
+
+          <!-- Card 2 -->
+          <a href="wishlist.html" class="kpi-card is-clickable" aria-label="Wishlist Items - View Wishlist">
+            <div class="kpi-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path
+                  d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                </path>
+              </svg>
+            </div>
+            <div class="kpi-details">
+              <div class="kpi-number">0</div>
+              <div class="kpi-label">Wishlist Items</div>
+            </div>
+          </a>
+
+          <!-- Card 3 -->
+          <a class="kpi-card" id="kpiTotalSavedCard" aria-label="Total Saved">
+            <div class="kpi-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+                <line x1="2" y1="10" x2="22" y2="10"></line>
+              </svg>
+            </div>
+            <div class="kpi-details">
+              <div class="kpi-number">₹0</div>
+              <div class="kpi-label">Total Saved</div>
+            </div>
+          </a>
+
+          <!-- Card 4 -->
+          <a href="wishlist.html" class="kpi-card is-clickable" aria-label="Favourite Items - View Wishlist">
+            <div class="kpi-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                </polygon>
+              </svg>
+            </div>
+            <div class="kpi-details">
+              <div class="kpi-number">0</div>
+              <div class="kpi-label">Favourite Items</div>
+            </div>
+          </a>
+        </div>
+
+        <!-- 3. AI SMART PICKS SECTION (3 Cards Max) -->
+        <section class="smart-picks-section" id="smartPicksSection"></section>
+
+
+
+        <!-- 5. POPULAR NEAR YOU SECTION (Full Width, 4 Cards) -->
+        <section class="popular-section">
+          <div class="section-header">
+            <h2 class="section-title">Popular Near You</h2>
+            <a href="menu.html" class="view-all-link">View All →</a>
+          </div>
+
+          <div class="food-grid">
+
+            <!-- Food Card 1: Paneer Burger -->
+            <div class="food-card" data-id="paneer-burger" data-category="snacks" data-subcategory="sandwiches"
+              data-tags="protein-rich">
+              <div class="food-img-wrapper">
+                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=400&q=80"
+                  class="food-img" alt="Paneer Burger">
+                <button class="fav-btn" title="Add to Wishlist">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path
+                      d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                    </path>
+                  </svg>
+                </button>
+              </div>
+              <div class="food-info">
+                <div class="food-name">Paneer Burger</div>
+                <div class="food-meta">
+                  <div class="food-rating">
+                    <svg class="star-icon" viewBox="0 0 24 24">
+                      <polygon
+                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                      </polygon>
+                    </svg>
+                    4.6 <span class="review-count">(120)</span>
+                  </div>
+                  <div class="food-time">⏱ 15 min</div>
+                </div>
+                <div class="food-bottom">
+                  <div class="food-price">₹89</div>
+                  <button class="add-cart-btn">Add</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Food Card 2: White Sauce Pasta -->
+            <div class="food-card" data-id="white-sauce-pasta" data-category="lunch" data-subcategory="quick-meals"
+              data-tags="light-meals">
+              <div class="food-img-wrapper">
+                <img src="images/White-Sauce-Pasta.jpg" class="food-img" alt="White Sauce Pasta">
+                <button class="fav-btn" title="Add to Wishlist">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path
+                      d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                    </path>
+                  </svg>
+                </button>
+              </div>
+              <div class="food-info">
+                <div class="food-name">White Sauce Pasta</div>
+                <div class="food-meta">
+                  <div class="food-rating">
+                    <svg class="star-icon" viewBox="0 0 24 24">
+                      <polygon
+                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                      </polygon>
+                    </svg>
+                    4.4 <span class="review-count">(98)</span>
+                  </div>
+                  <div class="food-time">⏱ 20 min</div>
+                </div>
+                <div class="food-bottom">
+                  <div class="food-price">₹119</div>
+                  <button class="add-cart-btn">Add</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Food Card 3: Paneer Wrap -->
+            <div class="food-card" data-id="paneer-wrap" data-category="snacks" data-subcategory="wraps"
+              data-tags="protein-rich,low-oil">
+              <div class="food-img-wrapper">
+                <img src="images/Paneer-Wrap.jpg" class="food-img" alt="Paneer Wrap">
+                <button class="fav-btn active" title="Remove from Wishlist">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="#EF4444" stroke="currentColor" stroke-width="2">
+                    <path
+                      d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                    </path>
+                  </svg>
+                </button>
+              </div>
+              <div class="food-info">
+                <div class="food-name">Paneer Wrap</div>
+                <div class="food-meta">
+                  <div class="food-rating">
+                    <svg class="star-icon" viewBox="0 0 24 24">
+                      <polygon
+                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                      </polygon>
+                    </svg>
+                    4.5 <span class="review-count">(210)</span>
+                  </div>
+                  <div class="food-time">⏱ 15 min</div>
+                </div>
+                <div class="food-bottom">
+                  <div class="food-price">₹99</div>
+                  <div class="qty-control">
+                    <button class="qty-btn minus">-</button>
+                    <span class="qty-val">1</span>
+                    <button class="qty-btn plus">+</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Food Card 4: Margherita Pizza -->
+            <div class="food-card" data-id="margherita-pizza" data-category="lunch" data-subcategory="quick-meals"
+              data-tags="light-meals">
+              <div class="food-img-wrapper">
+                <img src="https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=400&q=80"
+                  class="food-img" alt="Margherita Pizza">
+                <button class="fav-btn" title="Add to Wishlist">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path
+                      d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                    </path>
+                  </svg>
+                </button>
+              </div>
+              <div class="food-info">
+                <div class="food-name">Margherita Pizza</div>
+                <div class="food-meta">
+                  <div class="food-rating">
+                    <svg class="star-icon" viewBox="0 0 24 24">
+                      <polygon
+                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                      </polygon>
+                    </svg>
+                    4.7 <span class="review-count">(310)</span>
+                  </div>
+                  <div class="food-time">⏱ 25 min</div>
+                </div>
+                <div class="food-bottom">
+                  <div class="food-price">₹149</div>
+                  <button class="add-cart-btn">Add</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- 6. BOTTOM PROMOTIONAL BANNER -->
+        <div class="promo-banner">
+          <div class="banner-left">
+            <div class="banner-heading">
+              Good Food <span class="leaf-accent">🍃</span><br>Happier You
+            </div>
+            <div class="banner-quote">
+              "Great food fuels great conversations and even greater ideas."
+            </div>
+          </div>
+
+          <!-- Campus Architecture Aesthetic Graphic Overlay -->
+          <svg class="banner-bg-graphic" viewBox="0 0 320 120" fill="none" stroke="#D97706" stroke-width="1.2">
+            <path d="M10 110 L310 110" stroke-width="2" />
+            <path d="M120 110 V50 H200 V110 M120 50 L160 20 L200 50" />
+            <rect x="140" y="65" width="12" height="18" rx="1" />
+            <rect x="168" y="65" width="12" height="18" rx="1" />
+            <path d="M50 110 V70 H120 M200 70 H270 V110" />
+            <circle cx="280" cy="95" r="12" fill="#FEF3C7" opacity="0.6" />
+          </svg>
+        </div>
+
       </main>
 
     </div>
 
   </div>
 
+  <!-- JavaScript Controllers -->
+  <script src="js/menu.js"></script>
+  <script src="js/recommendationEngine.js"></script>
   <script src="js/dashboard.js"></script>
 </body>
+
 </html>

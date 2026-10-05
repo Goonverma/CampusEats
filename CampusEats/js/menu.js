@@ -14,7 +14,7 @@ const menuItems = [
     reviews: 180,
     time: '12 min',
     isVeg: true,
-    image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=400&q=80'
+    image: 'images/Aloo-Paneer-Paratha.jpg'
   },
   {
     id: 'veg-club-sandwich',
@@ -42,7 +42,7 @@ const menuItems = [
     reviews: 210,
     time: '10 min',
     isVeg: true,
-    image: 'https://images.unsplash.com/photo-1613564834361-9436948817d1?auto=format&fit=crop&w=400&q=80'
+    image: 'images/Indori-Steamed-Poha.jpg'
   },
   {
     id: 'rava-upma',
@@ -56,7 +56,7 @@ const menuItems = [
     reviews: 115,
     time: '10 min',
     isVeg: true,
-    image: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=400&q=80'
+    image: 'images/Vegetable-Rava-Upma.jpg'
   },
   {
     id: 'masala-dosa',
@@ -128,7 +128,7 @@ const menuItems = [
     reviews: 290,
     time: '15 min',
     isVeg: true,
-    image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=400&q=80'
+    image: 'images/Special-Rajma-Rice-Bowl.jpg'
   },
   {
     id: 'dal-makhani-rice',
@@ -142,7 +142,7 @@ const menuItems = [
     reviews: 210,
     time: '15 min',
     isVeg: true,
-    image: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=400&q=80'
+    image: 'images/Dal-Makhani-&-Jeera Rice.jpg'
   },
   {
     id: 'paneer-roti-combo',
@@ -170,7 +170,7 @@ const menuItems = [
     reviews: 98,
     time: '20 min',
     isVeg: true,
-    image: 'https://images.unsplash.com/photo-1621996346565-e3d5d6281318?auto=format&fit=crop&w=400&q=80'
+    image: 'images/White-Sauce-Pasta.jpg'
   },
   {
     id: 'margherita-pizza',
@@ -198,7 +198,7 @@ const menuItems = [
     reviews: 220,
     time: '20 min',
     isVeg: true,
-    image: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=400&q=80'
+    image: 'images/Shahi-Paneer-Thali.jpg'
   },
   {
     id: 'mexican-burrito-wrap',
@@ -212,7 +212,7 @@ const menuItems = [
     reviews: 145,
     time: '18 min',
     isVeg: true,
-    image: 'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=400&q=80'
+    image: 'images/Mexican-Burrito-Bowl-&-Wrap.jpg'
   },
 
   // SNACKS
@@ -242,7 +242,7 @@ const menuItems = [
     reviews: 210,
     time: '15 min',
     isVeg: true,
-    image: 'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=400&q=80'
+    image: 'images/Paneer-Wrap.jpg'
   },
   {
     id: 'steamed-momos',
@@ -298,7 +298,7 @@ const menuItems = [
     reviews: 165,
     time: '12 min',
     isVeg: true,
-    image: 'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=400&q=80'
+    image: 'images/Kathi-Paneer-Roll.jpg'
   },
 
   // DRINKS
@@ -328,7 +328,7 @@ const menuItems = [
     reviews: 420,
     time: '5 min',
     isVeg: true,
-    image: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=400&q=80'
+    image: 'images/Masala-Chai.jpg'
   },
   {
     id: 'apple-green-juice',
@@ -356,7 +356,7 @@ const menuItems = [
     reviews: 165,
     time: '10 min',
     isVeg: true,
-    image: 'https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=400&q=80'
+    image: 'images/Mango-Whey-Protein-Smoothie.jpg'
   },
   {
     id: 'chocolate-shake',
@@ -428,7 +428,7 @@ const menuItems = [
     reviews: 275,
     time: '5 min',
     isVeg: true,
-    image: 'https://images.unsplash.com/photo-1570197788417-0e82375c9371?auto=format&fit=crop&w=400&q=80'
+    image: 'images/Belgian-Chocolate-Ice-Cream.jpg'
   },
   {
     id: 'gulab-jamun',
@@ -442,7 +442,7 @@ const menuItems = [
     reviews: 340,
     time: '5 min',
     isVeg: true,
-    image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=400&q=80'
+    image: 'images/Gulab-Jamun-(2 Pcs).jpg'
   }
 ];
 
@@ -644,7 +644,7 @@ function renderFilteredItems(items) {
   grid.innerHTML = items.map(item => `
     <div class="food-card" data-id="${item.id}" data-category="${item.mainCategory}" data-subcategory="${item.subCategory}" data-tags="${item.tags.join(',')}">
       <div class="food-img-wrapper">
-        <img src="${item.image}" class="food-img" alt="${item.name}">
+        <img src="${item.image}" onerror="if(!this.dataset.retried){this.dataset.retried='true';if(this.src.indexOf('CampusEats/')===-1){this.src='CampusEats/'+'${item.image}';}}" class="food-img" alt="${item.name}">
         <button class="fav-btn ${wishlist.includes(item.id) ? 'active' : ''}">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="${wishlist.includes(item.id) ? '#EF4444' : 'none'}" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
         </button>

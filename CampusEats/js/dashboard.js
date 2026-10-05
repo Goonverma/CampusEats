@@ -6,7 +6,7 @@ function getCurrentUser() {
   if (userJson) {
     try {
       return JSON.parse(userJson);
-    } catch (e) {}
+    } catch (e) { }
   }
   return {
     name: 'Student User',
@@ -22,7 +22,7 @@ function setCurrentUser(userObj) {
   let registered = {};
   try {
     registered = JSON.parse(localStorage.getItem('campusEats_registered_users') || '{}');
-  } catch (e) {}
+  } catch (e) { }
   if (userObj && userObj.email) {
     registered[userObj.email.toLowerCase()] = userObj;
     localStorage.setItem('campusEats_registered_users', JSON.stringify(registered));
@@ -85,6 +85,48 @@ function setUserOrders(ordersArray) {
   localStorage.setItem(key, JSON.stringify(ordersArray));
 }
 
+function getUserDietPreferences() {
+  const user = getCurrentUser();
+  if (user && Array.isArray(user.dietPreferences)) {
+    return user.dietPreferences;
+  }
+  const key = getUserKey('diet_preferences');
+  try {
+    return JSON.parse(localStorage.getItem(key) || '[]');
+  } catch (e) {
+    return [];
+  }
+}
+
+function setUserDietPreferences(prefsArray) {
+  const user = getCurrentUser();
+  user.dietPreferences = prefsArray;
+  setCurrentUser(user);
+  const key = getUserKey('diet_preferences');
+  localStorage.setItem(key, JSON.stringify(prefsArray));
+  if (window.renderRecommendations) window.renderRecommendations();
+}
+
+function getUserViewedCategories() {
+  const key = getUserKey('viewed_categories');
+  try {
+    return JSON.parse(localStorage.getItem(key) || '[]');
+  } catch (e) {
+    return [];
+  }
+}
+
+function trackCategoryView(category) {
+  if (!category || category === 'all') return;
+  let views = getUserViewedCategories();
+  if (!views.includes(category)) {
+    views.unshift(category);
+    if (views.length > 5) views = views.slice(0, 5);
+    const key = getUserKey('viewed_categories');
+    localStorage.setItem(key, JSON.stringify(views));
+  }
+}
+
 // Make helpers available globally
 window.getCurrentUser = getCurrentUser;
 window.setCurrentUser = setCurrentUser;
@@ -96,6 +138,10 @@ window.getUserWishlist = getUserWishlist;
 window.setUserWishlist = setUserWishlist;
 window.getUserOrders = getUserOrders;
 window.setUserOrders = setUserOrders;
+window.getUserDietPreferences = getUserDietPreferences;
+window.setUserDietPreferences = setUserDietPreferences;
+window.getUserViewedCategories = getUserViewedCategories;
+window.trackCategoryView = trackCategoryView;
 
 const subCategoryData = {
   all: [
@@ -123,29 +169,26 @@ const subCategoryData = {
   ],
   snacks: [
     { id: 'all', label: 'All Snacks' },
-    { id: 'samosa', label: 'Samosa' },
-    { id: 'sandwiches', label: 'Sandwiches' },
-    { id: 'fries', label: 'Fries' },
+    { id: 'sandwiches', label: 'Burgers & Sandwiches' },
+    { id: 'wraps', label: 'Wraps & Rolls' },
     { id: 'momos', label: 'Momos' },
-    { id: 'wraps', label: 'Wraps' },
-    { id: 'rolls', label: 'Rolls' },
+    { id: 'samosa', label: 'Samosa & Chaat' },
+    { id: 'fries', label: 'Fries & Sides' },
     { id: 'quick-bites', label: 'Quick Bites' }
   ],
   drinks: [
     { id: 'all', label: 'All Drinks' },
-    { id: 'tea', label: 'Tea' },
     { id: 'coffee', label: 'Coffee' },
+    { id: 'tea', label: 'Tea' },
     { id: 'juices', label: 'Juices' },
-    { id: 'shakes', label: 'Shakes' },
     { id: 'smoothies', label: 'Smoothies' },
-    { id: 'cold-drinks', label: 'Cold Drinks' },
-    { id: 'no-added-sugar', label: 'No Added Sugar' }
+    { id: 'shakes', label: 'Milkshakes' },
+    { id: 'cold-drinks', label: 'Cold Beverages' }
   ],
   desserts: [
     { id: 'all', label: 'All Desserts' },
-    { id: 'cakes', label: 'Cakes' },
-    { id: 'pastries', label: 'Pastries' },
-    { id: 'ice-cream', label: 'Ice Cream' },
+    { id: 'pastries', label: 'Pastries & Cakes' },
+    { id: 'ice-cream', label: 'Ice Creams' },
     { id: 'indian-sweets', label: 'Indian Sweets' },
     { id: 'fruit-desserts', label: 'Fruit Desserts' },
     { id: 'chocolate', label: 'Chocolate' },
@@ -171,6 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
   updateBadgeCounts();
   updateDashboardKPIs();
   renderDashboardOrders();
+  renderRecommendations();
   syncWishlistOnCards();
   setupCategoryFilters();
   setupSearch();
@@ -179,6 +223,94 @@ document.addEventListener('DOMContentLoaded', () => {
   setupWishlistActions();
   setupLogoutHandler();
 });
+
+function renderRecommendations() {
+  const section = document.getElementById('smartPicksSection');
+  if (!section) return;
+
+  if (typeof getAIRecommendations !== 'function') {
+    return;
+  }
+
+  const result = getAIRecommendations();
+
+  if (!result.isPersonalized || !result.recommendations || result.recommendations.length === 0) {
+    // Clean Empty State for New / Inactive Users
+    section.innerHTML = `
+      <div class="smart-picks-banner empty-state-banner">
+        <div class="smart-picks-header">
+          <div class="smart-picks-title-group">
+            <span class="sparkle-icon">✨</span>
+            <h2 class="smart-picks-title">Smart Picks for You</h2>
+            <span class="ai-badge">AI-Assisted</span>
+          </div>
+          <p class="smart-picks-subtitle">Start exploring the menu to get personalized recommendations.</p>
+        </div>
+        <div class="empty-picks-cta">
+          <a href="menu.html" class="hero-btn browse-menu-btn">Browse Menu →</a>
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  // Active Personalized Recommendations State
+  const wishlist = getUserWishlist();
+
+  section.innerHTML = `
+    <div class="smart-picks-banner">
+      <div class="smart-picks-header">
+        <div class="smart-picks-title-group">
+          <span class="sparkle-icon">✨</span>
+          <h2 class="smart-picks-title">Smart Picks for You</h2>
+          <span class="ai-badge">AI-Assisted</span>
+        </div>
+        <p class="smart-picks-subtitle">Personalized recommendations based on your food preferences and activity.</p>
+      </div>
+
+      <div class="food-grid smart-picks-grid">
+        ${result.recommendations.map(food => {
+    const isWishlisted = wishlist.includes(food.id);
+    const aiReason = 'You might like this!';
+    const tagLabel = food.displayTag || 'Recommended';
+
+    return `
+            <div class="food-card smart-pick-card" data-id="${food.id}" data-category="${food.mainCategory || ''}" data-subcategory="${food.subCategory || ''}" data-tags="${(food.tags || []).join(',')}">
+              <div class="food-img-wrapper">
+                <img src="${food.image}" class="food-img" alt="${food.name}">
+                <span class="smart-tag-badge">${tagLabel}</span>
+                <button class="fav-btn ${isWishlisted ? 'active' : ''}" title="${isWishlisted ? 'Remove from Wishlist' : 'Add to Wishlist'}">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="${isWishlisted ? '#EF4444' : 'none'}" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                </button>
+              </div>
+              <div class="food-info">
+                <div class="food-name">${food.name}</div>
+                <div class="food-meta">
+                  <div class="food-rating">
+                    <svg class="star-icon" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    ${food.rating || 4.5} <span class="review-count">(${food.reviews || 100})</span>
+                  </div>
+                  <div class="food-time">⏱ ${food.time || '15 min'}</div>
+                </div>
+                
+                <div class="ai-reason-box">
+                  <span class="ai-reason-icon">💡</span>
+                  <span class="ai-reason-text">${aiReason}</span>
+                </div>
+
+                <div class="food-bottom">
+                  <div class="food-price">₹${food.price}</div>
+                  <button class="add-cart-btn">Add</button>
+                </div>
+              </div>
+            </div>
+          `;
+  }).join('')}
+      </div>
+    </div>
+  `;
+}
+window.renderRecommendations = renderRecommendations;
 
 function renderUserProfileInNav() {
   const user = getCurrentUser();
@@ -248,6 +380,23 @@ function updateDashboardKPIs() {
   const kpiSavedNum = document.querySelector('.kpi-card:nth-child(3) .kpi-number');
   if (kpiSavedNum) kpiSavedNum.textContent = `₹${totalSaved}`;
 
+  const kpiSavedCard = document.getElementById('kpiTotalSavedCard') || document.querySelector('.kpi-card:nth-child(3)');
+  if (kpiSavedCard) {
+    if (totalSaved > 0) {
+      kpiSavedCard.setAttribute('href', 'orders.html');
+      kpiSavedCard.classList.add('is-clickable');
+      kpiSavedCard.style.cursor = 'pointer';
+      kpiSavedCard.setAttribute('title', 'Click to view savings history in My Orders');
+      kpiSavedCard.setAttribute('aria-label', `Total Saved: ₹${totalSaved}. Click to view savings history in My Orders`);
+    } else {
+      kpiSavedCard.removeAttribute('href');
+      kpiSavedCard.classList.remove('is-clickable');
+      kpiSavedCard.style.cursor = 'default';
+      kpiSavedCard.removeAttribute('title');
+      kpiSavedCard.setAttribute('aria-label', `Total Saved: ₹0`);
+    }
+  }
+
   // 4. Favourite Items KPI (calculated from wishlist)
   const kpiFavNum = document.querySelector('.kpi-card:nth-child(4) .kpi-number');
   if (kpiFavNum) kpiFavNum.textContent = wishlist.length;
@@ -264,7 +413,7 @@ function renderDashboardOrders() {
       const firstItem = activeOrder.items && activeOrder.items.length > 0 ? activeOrder.items[0] : null;
       const itemImg = firstItem ? firstItem.image : 'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=400&q=80';
       const itemsSummary = activeOrder.itemsSummary || (activeOrder.items ? activeOrder.items.map(i => `${i.name} × ${i.qty}`).join(', ') : 'Campus Order');
-      
+
       currentOrderCard.innerHTML = `
         <div class="order-card-header">
           <div class="order-card-title">Your Current Order</div>
@@ -345,12 +494,12 @@ function renderDashboardOrders() {
           <a href="orders.html" class="view-all-link">View All →</a>
         </div>
         ${recentList.map(order => {
-          const firstItem = order.items && order.items.length > 0 ? order.items[0] : null;
-          const thumb = firstItem ? firstItem.image : 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=150&q=80';
-          const itemsCount = order.items ? order.items.reduce((s, i) => s + i.qty, 0) : 1;
-          const statusClass = (order.status || 'Delivered').toLowerCase();
+        const firstItem = order.items && order.items.length > 0 ? order.items[0] : null;
+        const thumb = firstItem ? firstItem.image : 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=150&q=80';
+        const itemsCount = order.items ? order.items.reduce((s, i) => s + i.qty, 0) : 1;
+        const statusClass = (order.status || 'Delivered').toLowerCase();
 
-          return `
+        return `
             <div class="recent-order-item">
               <img src="${thumb}" alt="Order Thumb" class="recent-item-thumb">
               <div class="recent-order-info">
@@ -361,7 +510,7 @@ function renderDashboardOrders() {
               <span class="status-badge ${statusClass}">${order.status}</span>
             </div>
           `;
-        }).join('')}
+      }).join('')}
       `;
     } else {
       recentOrdersCard.innerHTML = `
@@ -402,7 +551,7 @@ function updateBadgeCounts() {
   const cart = getUserCart();
   const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
   const cartBadges = document.querySelectorAll('.cart-badge-val, .badge-count');
-  
+
   cartBadges.forEach(badge => {
     if (badge) badge.textContent = totalQty;
   });
@@ -703,6 +852,8 @@ function setupWishlistActions() {
 
     setUserWishlist(wishlist);
     updateDashboardKPIs();
+    renderRecommendations();
+    syncWishlistOnCards();
   });
 }
 

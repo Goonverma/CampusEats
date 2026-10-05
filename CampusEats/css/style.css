@@ -6,33 +6,33 @@
   --secondary-navy: #1E293B;
   --deep-navy: #07111F;
   --navy-hover: #1E293B;
-  
+
   --gold-primary: #FACC15;
   --gold-accent: #EAB308;
   --gold-hover: #CA8A04;
   --soft-gold: #FEF3C7;
   --warm-gold: #FDE68A;
   --cream-gold: #FFFBEB;
-  
+
   --dark-text: #0F172A;
   --secondary-text: #64748B;
   --light-text: #94A3B8;
   --bg-color: #F8FAFC;
   --card-bg: #FFFFFF;
   --white: #FFFFFF;
-  
+
   --success-green: #22C55E;
   --success-bg: #DCFCE7;
   --danger-red: #EF4444;
   --danger-bg: #FEE2E2;
   --border-color: #E2E8F0;
   --border-light: #F1F5F9;
-  
+
   --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.05);
   --shadow-md: 0 4px 18px rgba(15, 23, 42, 0.06);
   --shadow-lg: 0 10px 25px -3px rgba(15, 23, 42, 0.1);
   --shadow-gold: 0 6px 18px rgba(250, 204, 21, 0.25);
-  
+
   --radius-sm: 10px;
   --radius-md: 12px;
   --radius-lg: 16px;
@@ -70,7 +70,9 @@ button {
   background: none;
 }
 
-input, select, textarea {
+input,
+select,
+textarea {
   font-family: inherit;
 }
 
@@ -197,7 +199,8 @@ input, select, textarea {
   transition: stroke 0.2s ease;
 }
 
-.nav-item:hover svg, .nav-item.active svg {
+.nav-item:hover svg,
+.nav-item.active svg {
   stroke: var(--gold-primary);
 }
 
@@ -271,7 +274,7 @@ input, select, textarea {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 32px;
+  padding: 0 28px;
   position: sticky;
   top: 0;
   z-index: 90;
@@ -487,7 +490,7 @@ input, select, textarea {
 }
 
 .content-area {
-  padding: 28px 32px;
+  padding: 24px 28px;
   flex: 1;
 }
 
@@ -525,6 +528,7 @@ input, select, textarea {
     transform: translateY(20px);
     opacity: 0;
   }
+
   to {
     transform: translateY(0);
     opacity: 1;
@@ -542,16 +546,24 @@ input, select, textarea {
     width: 80px;
     padding: 20px 8px;
   }
-  .brand-title, .brand-tagline, .sidebar-bottom, .nav-item span, .badge-count {
+
+  .brand-title,
+  .brand-tagline,
+  .sidebar-bottom,
+  .nav-item span,
+  .badge-count {
     display: none;
   }
+
   .main-wrapper {
     margin-left: 80px;
   }
+
   .nav-item {
     justify-content: center;
     padding: 14px;
   }
+
   .nav-item.active::before {
     display: none;
   }
@@ -561,9 +573,11 @@ input, select, textarea {
   .top-navbar {
     padding: 0 16px;
   }
+
   .content-area {
     padding: 16px;
   }
+
   .user-info {
     display: none;
   }
