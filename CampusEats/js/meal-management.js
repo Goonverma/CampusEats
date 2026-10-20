@@ -1,47 +1,126 @@
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
-import { collection, doc, getDoc, onSnapshot, query, runTransaction, where } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+import { collection, doc, getDoc, onSnapshot, query, runTransaction, setDoc, where } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 import { auth, db } from "./firebase.js";
 
-document.addEventListener('DOMContentLoaded', () => {
-    onAuthStateChanged(auth, async (user) => {
-        if (!user) {
-            window.location.replace('hosteller-access.html?mode=signin');
+let registrationHandlerAttached = false;
+let stopListeningProfile = null;
+let mealInteractionsInitialized = false;
+
+window.campusEatsAuthReady.then(async (authState) => {
+    if (!authState?.user) {
+        window.location.replace('login.html');
+        return;
+    }
+
+    const user = authState.user;
+
+    if (stopListeningProfile) {
+        stopListeningProfile();
+    }
+
+    // Real-time listener: As soon as admin changes verificationStatus to 'approved' in Firestore,
+    // the page opens automatically in real time without needing a refresh!
+    stopListeningProfile = onSnapshot(doc(db, 'hostellerProfiles', user.uid), (profileSnapshot) => {
+        if (!profileSnapshot.exists()) {
+            showRegistrationForm(user);
             return;
         }
 
-        try {
-            const profileSnapshot = await getDoc(doc(db, 'hostellerProfiles', user.uid));
-            if (!profileSnapshot.exists()) {
-                window.location.replace('hosteller-access.html?mode=signin');
-                return;
-            }
-
-            const profile = profileSnapshot.data();
-            if (profile.verificationStatus !== 'approved') {
-                window.location.replace('hosteller-access.html?view=status');
-                return;
-            }
-
-            document.getElementById('meal-access-gate').hidden = true;
-            document.getElementById('meal-app').hidden = false;
-            document.querySelectorAll('.user-name').forEach((element) => {
-                element.textContent = profile.name;
-            });
-            document.querySelectorAll('.user-role').forEach((element) => {
-                element.textContent = 'Hosteller';
-            });
-            const initials = profile.name.trim().split(/\s+/).map((part) => part[0]).slice(0, 2).join('').toUpperCase();
-            document.querySelectorAll('.user-avatar').forEach((element) => {
-                element.textContent = initials || 'H';
-            });
-            initializeMealInteractions(user.uid);
-        } catch (error) {
-            const gate = document.getElementById('meal-access-gate');
-            gate.querySelector('h1').textContent = 'Unable to verify hostel access';
-            gate.querySelector('p:not(.mm-eyebrow)').textContent = error.message || 'Check your connection and try again.';
+        const profile = profileSnapshot.data();
+        if (profile.verificationStatus === 'pending') {
+            showGate('Hostel Verification Pending', 'Your hostel verification request has been submitted. Meal Management will be available after admin verification.');
+            return;
         }
+        if (profile.verificationStatus === 'rejected') {
+            showGate('Hostel Verification Rejected', 'Your hostel verification request was rejected. Meal Management and meal booking remain locked.');
+            return;
+        }
+        if (profile.verificationStatus !== 'approved') {
+            showGate('Unable to verify hostel access', 'Your hostel verification status is invalid. Contact the administrator.');
+            return;
+        }
+
+        // Verification approved by admin! Open Meal Management!
+        document.getElementById('meal-access-gate').hidden = true;
+        document.getElementById('meal-app').hidden = false;
+        document.querySelectorAll('.user-name').forEach((element) => {
+            element.textContent = profile.name || 'Student';
+        });
+        document.querySelectorAll('.user-role').forEach((element) => {
+            element.textContent = 'Hosteller';
+        });
+        const initials = (profile.name || 'H').trim().split(/\s+/).map((part) => part[0]).slice(0, 2).join('').toUpperCase();
+        document.querySelectorAll('.user-avatar').forEach((element) => {
+            element.textContent = initials || 'H';
+        });
+
+        if (!mealInteractionsInitialized) {
+            mealInteractionsInitialized = true;
+            initializeMealInteractions(user.uid);
+        }
+    }, (error) => {
+        console.error('Error loading hosteller profile:', error);
+        showGate('Unable to verify hostel access', error.message || 'Check your connection and try again.');
     });
 });
+
+function showGate(title, message) {
+    const gate = document.getElementById('meal-access-gate');
+    gate.hidden = false;
+    document.getElementById('meal-app').hidden = true;
+    document.getElementById('meal-gate-title').textContent = title;
+    document.getElementById('meal-gate-message').textContent = message;
+    document.getElementById('hosteller-registration-form').hidden = true;
+    const signInBtn = document.getElementById('meal-gate-signin');
+    if (signInBtn) {
+        signInBtn.hidden = Boolean(auth.currentUser);
+    }
+}
+
+function showRegistrationForm(user) {
+    showGate('Hosteller Details Registration', 'Register your hostel details using your signed-in CampusEats account. No additional email or password is needed.');
+    document.getElementById('hosteller-registration-form').hidden = false;
+    const signInBtn = document.getElementById('meal-gate-signin');
+    if (signInBtn) {
+        signInBtn.hidden = true;
+    }
+
+    if (registrationHandlerAttached) return;
+    registrationHandlerAttached = true;
+    const form = document.getElementById('hosteller-registration-form');
+    const message = document.getElementById('registration-message');
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        message.hidden = true;
+        const currentUser = auth.currentUser;
+        if (!currentUser || currentUser.uid !== user.uid) {
+            message.textContent = 'Your sign-in changed. Please sign in again.';
+            message.hidden = false;
+            return;
+        }
+
+        const values = new FormData(form);
+        const profile = {
+            name: window.campusEatsUser?.name || currentUser.displayName || '',
+            email: currentUser.email || '',
+            block: String(values.get('block')).trim(),
+            roomNumber: String(values.get('roomNumber')).trim(),
+            enrollmentNumber: String(values.get('enrollmentNumber')).trim(),
+            verificationStatus: 'pending'
+        };
+        try {
+            await setDoc(doc(db, 'hostellerProfiles', currentUser.uid), profile);
+            form.reset();
+            showGate('Hostel Verification Pending', 'Your hostel verification request has been submitted. Meal Management will be available after admin verification.');
+        } catch (error) {
+            console.error('Unable to submit the hosteller verification request.', error);
+            message.textContent = error.code === 'permission-denied'
+                ? 'Firebase access was denied. Check the deployed Firestore security rules.'
+                : error.message || 'Operation failed. Please try again.';
+            message.hidden = false;
+        }
+    });
+}
 
 function initializeMealInteractions(userId) {
 
@@ -79,26 +158,27 @@ function initializeMealInteractions(userId) {
     async function getApprovedUser() {
         const user = auth.currentUser;
         if (!user) {
-            notify('Please sign in with your hosteller account.', 'error');
-            window.location.href = 'hosteller-access.html?mode=signin';
+            notify('Please sign in with your CampusEats account.', 'error');
+            window.location.href = 'login.html';
             return null;
         }
         if (user.uid !== userId) {
             notify('Your sign-in changed. Please sign in again.', 'error');
-            window.location.href = 'hosteller-access.html?mode=signin';
+            window.location.href = 'login.html';
             return null;
         }
 
         try {
             const profileSnapshot = await getDoc(doc(db, 'hostellerProfiles', user.uid));
             if (!profileSnapshot.exists()) {
-                notify('Hosteller profile not found. Please sign in again.', 'error');
-                window.location.href = 'hosteller-access.html?mode=signin';
+                notify('Hosteller profile not found. Register your details first.', 'error');
+                window.location.href = 'meal-management.html';
                 return null;
             }
-            const status = profileSnapshot.data().verificationStatus;
+            const data = profileSnapshot.data();
+            const status = data.verificationStatus;
             if (status === 'pending') {
-                notify('Hostel Verification Pending.', 'error');
+                notify('Hostel Verification Pending. Awaiting admin approval.', 'error');
                 return null;
             }
             if (status === 'rejected') {

@@ -2,30 +2,37 @@
 
 // User Authentication & Scoped Storage System
 function getCurrentUser() {
-  const userJson = localStorage.getItem('campusEats_user');
-  if (userJson) {
-    try {
-      return JSON.parse(userJson);
-    } catch (e) { }
+  const authenticatedUser = window.campusEatsUser;
+  if (!authenticatedUser) {
+    return {
+      uid: '',
+      name: 'Student',
+      email: '',
+      role: 'Student',
+      phone: '',
+      hostel: ''
+    };
   }
-  return {
-    name: 'Student User',
-    email: 'student@campus.edu',
-    role: 'Student',
-    phone: '',
-    hostel: ''
-  };
+
+  let profileDetails = {};
+  try {
+    profileDetails = JSON.parse(localStorage.getItem(`campusEats_profile_details_${authenticatedUser.uid}`) || '{}');
+  } catch (error) {
+    console.error('Unable to read cached CampusEats profile details.', error);
+  }
+  return { ...profileDetails, ...authenticatedUser };
 }
 
 function setCurrentUser(userObj) {
-  localStorage.setItem('campusEats_user', JSON.stringify(userObj));
-  let registered = {};
+  const currentUser = { ...getCurrentUser(), ...userObj };
+  window.campusEatsUser = currentUser;
   try {
-    registered = JSON.parse(localStorage.getItem('campusEats_registered_users') || '{}');
-  } catch (e) { }
-  if (userObj && userObj.email) {
-    registered[userObj.email.toLowerCase()] = userObj;
-    localStorage.setItem('campusEats_registered_users', JSON.stringify(registered));
+    localStorage.setItem(`campusEats_profile_details_${currentUser.uid}`, JSON.stringify({
+      phone: currentUser.phone || '',
+      hostel: currentUser.hostel || ''
+    }));
+  } catch (error) {
+    console.error('Unable to cache optional CampusEats profile details.', error);
   }
 }
 
@@ -39,8 +46,7 @@ function getInitials(name) {
 
 function getUserKey(keyName) {
   const user = getCurrentUser();
-  const safeEmail = (user.email || 'guest').toLowerCase().replace(/[^a-z0-9]/g, '_');
-  return `campusEats_${keyName}_${safeEmail}`;
+  return `campusEats_${keyName}_${user.uid || 'signed-out'}`;
 }
 
 function getUserCart() {
@@ -209,7 +215,9 @@ const subCategoryData = {
 let currentMainCategory = 'all';
 let currentSubCategory = 'all';
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  const authState = await window.campusEatsAuthReady;
+  if (!authState?.user) return;
   renderUserProfileInNav();
   updateBadgeCounts();
   updateDashboardKPIs();
@@ -221,7 +229,6 @@ document.addEventListener('DOMContentLoaded', () => {
   setupNotifications();
   setupCartActions();
   setupWishlistActions();
-  setupLogoutHandler();
 });
 
 function renderRecommendations() {
@@ -854,13 +861,5 @@ function setupWishlistActions() {
     updateDashboardKPIs();
     renderRecommendations();
     syncWishlistOnCards();
-  });
-}
-
-function setupLogoutHandler() {
-  document.querySelectorAll('a[href="login.html"]').forEach(link => {
-    link.addEventListener('click', () => {
-      localStorage.removeItem('campusEats_user');
-    });
   });
 }

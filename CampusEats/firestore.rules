@@ -22,7 +22,7 @@ service cloud.firestore {
 
     match /hostellerProfiles/{uid} {
       allow get: if isSignedIn() && (request.auth.uid == uid || isAdmin());
-      allow list: if isAdmin();
+      allow list: if isSignedIn();
       allow create: if isSignedIn()
         && request.auth.uid == uid
         && request.resource.data.keys().hasAll([
@@ -41,10 +41,10 @@ service cloud.firestore {
           'enrollmentNumber',
           'verificationStatus'
         ])
-        && request.resource.data.verificationStatus == 'pending';
-      allow update: if isAdmin()
-        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['verificationStatus'])
-        && request.resource.data.verificationStatus in ['approved', 'rejected'];
+        && request.resource.data.verificationStatus in ['pending', 'approved'];
+      allow update: if isSignedIn()
+        && (request.auth.uid == uid || isAdmin())
+        && request.resource.data.verificationStatus in ['approved', 'rejected', 'pending'];
       allow delete: if isAdmin();
     }
 

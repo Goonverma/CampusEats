@@ -515,7 +515,9 @@ const subCategoryMap = {
 let currentMainCat = 'all';
 let currentSubCat = 'all';
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  const authState = await window.campusEatsAuthReady;
+  if (!authState?.user) return;
   renderMenuGrid(menuItems);
   setupMenuCategoryControls();
 
@@ -671,4 +673,3 @@ function renderFilteredItems(items) {
 function renderMenuGrid(items) {
   renderFilteredItems(items);
 }
-

@@ -1,10 +1,12 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  const authState = await window.campusEatsAuthReady;
+  if (!authState?.user) return;
   renderProfilePage();
   setupDietPills();
 
   const profileForm = document.getElementById('profileForm');
   if (profileForm) {
-    profileForm.addEventListener('submit', (e) => {
+    profileForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const currentUser = getCurrentUser();
       const name = document.getElementById('profName').value.trim();
@@ -27,9 +29,15 @@ document.addEventListener('DOMContentLoaded', () => {
         role: currentUser.role || 'Student'
       };
 
-      setCurrentUser(updatedUser);
-      if (typeof setUserDietPreferences === 'function') {
-        setUserDietPreferences(selectedDietPrefs);
+      try {
+        await window.saveCampusEatsProfile(updatedUser);
+        setCurrentUser(updatedUser);
+        if (typeof setUserDietPreferences === 'function') {
+          setUserDietPreferences(selectedDietPrefs);
+        }
+      } catch (error) {
+        showToast(error.message || 'Profile update failed. Please try again.', 'error');
+        return;
       }
       renderProfilePage();
       if (window.renderUserProfileInNav) window.renderUserProfileInNav();

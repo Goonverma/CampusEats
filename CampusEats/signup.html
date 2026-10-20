@@ -62,11 +62,36 @@
               <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
               <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
             </svg>
-            <input type="password" id="password" class="form-input" placeholder="At least 8 characters" required>
+            <input type="password" id="password" class="form-input" placeholder="At least 8 characters" minlength="8" required>
           </div>
         </div>
 
+        <div class="form-group">
+          <label class="form-label" for="studentType">Student Type</label>
+          <select id="studentType" class="form-input" required>
+            <option value="Day Scholar">Day Scholar</option>
+            <option value="Hosteller">Hosteller</option>
+          </select>
+        </div>
+
+        <div id="hostellerFields" hidden>
+          <div class="form-group">
+            <label class="form-label" for="block">Block</label>
+            <input type="text" id="block" class="form-input" placeholder="Enter your block">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="roomNumber">Room Number</label>
+            <input type="text" id="roomNumber" class="form-input" placeholder="Enter your room number">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="enrollmentNumber">Enrollment Number</label>
+            <input type="text" id="enrollmentNumber" class="form-input" placeholder="Enter your enrollment number">
+          </div>
+        </div>
+
+        <p id="auth-message" role="status" hidden></p>
         <button type="submit" class="auth-btn">Create Account</button>
+        <a id="auth-continue" href="dashboard.html" hidden>Continue to CampusEats</a>
       </form>
 
       <div class="auth-footer">

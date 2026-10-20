@@ -1,6 +1,8 @@
 /* CampusEats - Orders Page Controller */
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  const authState = await window.campusEatsAuthReady;
+  if (!authState?.user) return;
   renderOrdersHistory();
 });
 
